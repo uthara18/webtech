@@ -1,0 +1,190 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>KELL Beauty Store</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #fff5f8;
+        }
+
+        header {
+            background-color: #ff4d88;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #ffe6f0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ff0066;
+            margin: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        section {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+        }
+
+        button {
+            background-color: #ff4d88;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e6005c;
+        }
+
+        input, textarea {
+            width: 250px;
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #ff4d88;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e6005c;
+        }
+
+        footer {
+            background-color: #ff4d88;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function showPage(pageId) {
+            var sections = document.querySelectorAll("section");
+            sections.forEach(function(section) {
+                section.classList.remove("active");
+            });
+            document.getElementById(pageId).classList.add("active");
+        }
+    </script>
+
+</head>
+
+<body>
+
+<header>
+    <h1>💄 KELL Beauty Store</h1>
+    <p>Your One Stop Makeup Shop</p>
+</header>
+
+<nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('products')">Products</a>
+    <a onclick="showPage('contact')">Contact</a>
+</nav>
+
+<!-- HOME PAGE -->
+<section id="home" class="active">
+    <h2>Welcome to KELL Beauty</h2>
+    <p>
+        Discover premium makeup products at affordable prices.
+        Glow confidently with our lipstick, foundation and eyeliner collection.
+    </p>
+</section>
+
+<!-- PRODUCTS PAGE -->
+<section id="products">
+    <h2>Our Products</h2>
+
+    <div class="products">
+
+        <div class="product">
+            <h3>Matte Lipstick</h3>
+            <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa" alt="Lipstick">
+            <p>Price: ₹499</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <h3>Liquid Foundation</h3>
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348" alt="Foundation">
+            <p>Price: ₹899</p>
+            <button>Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <h3>Waterproof Eyeliner</h3>
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad" alt="Eyeliner">
+            <p>Price: ₹299</p>
+            <button>Add to Cart</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT PAGE -->
+<section id="contact">
+    <h2>Contact Us</h2>
+
+    <form>
+        <label>Name:</label><br>
+        <input type="text"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email"><br><br>
+
+        <label>Message:</label><br>
+        <textarea rows="4"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</section>
+
+<footer>
+    © 2026 KELL Beauty Store
+</footer>
+
+</body>
+</html>       

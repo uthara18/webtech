@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uthara | Personal Website</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: lavender;
+        }
+
+        header {
+            background-color: purple;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: pink;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+            color: darkblue;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        section {
+            display: none;
+            padding: 30px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            color: darkmagenta;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 70%;
+            margin: auto;
+            box-shadow: 0 0 10px gray;
+        }
+
+        ul, ol {
+            line-height: 1.8;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: hotpink;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: deeppink;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: purple;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function showPage(pageId) {
+            var sections = document.querySelectorAll("section");
+            sections.forEach(function(section) {
+                section.classList.remove("active");
+            });
+            document.getElementById(pageId).classList.add("active");
+        }
+    </script>
+
+</head>
+
+<body>
+
+<header>
+    <h1>Welcome to My Website</h1>
+    <p>Hello! I'm Uthara 👋</p>
+</header>
+
+<nav>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('skills')">Skills</a>
+    <a onclick="showPage('projects')">Projects</a>
+    <a onclick="showPage('contact')">Contact</a>
+</nav>
+
+<!-- ABOUT -->
+<section id="about" class="active">
+    <div class="box">
+        <h2>About Me</h2>
+        <p>
+            I am a Computer Science student passionate about web development,
+            programming and learning new technologies. I enjoy creating
+            creative and useful projects.
+        </p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="box">
+        <h2>My Skills</h2>
+        <ul>
+            <li>HTML & Basic CSS</li>
+            <li>Python Programming</li>
+            <li>Problem Solving</li>
+            <li>Basic JavaScript</li>
+        </ul>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="box">
+        <h2>My Projects</h2>
+        <ol>
+            <li>E-Commerce Website</li>
+            <li>AI Sign Language Translator</li>
+            <li>Personal Portfolio Website</li>
+        </ol>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="box">
+        <h2>Contact Me</h2>
+        <form>
+            <label>Name:</label><br>
+            <input type="text"><br><br>
+
+            <label>Email:</label><br>
+            <input type="email"><br><br>
+
+            <label>Message:</label><br>
+            <textarea rows="4"></textarea><br><br>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </div>
+</section>
+
+<footer>
+    © 2026 Uthara | Personal Website
+</footer>
+
+</body>
+</html>
