@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student & Market Smart Dashboard</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+margin:0;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
+}
+
+h1{
+margin-top:20px;
+letter-spacing:1px;
+}
+
+.container{
+width:90%;
+margin:auto;
+margin-top:25px;
+}
+
+.switchBtns button{
+margin:10px;
+}
+
+button{
+padding:8px 16px;
+border:none;
+border-radius:6px;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:linear-gradient(45deg,#ff9966,#ff5e62);
+}
+
+.controls{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:20px;
+flex-wrap:wrap;
+}
+
+.searchBox{
+position:relative;
+}
+
+.searchBox input{
+padding:10px 10px 10px 35px;
+border-radius:6px;
+border:none;
+outline:none;
+width:200px;
+}
+
+.searchBox span{
+position:absolute;
+left:10px;
+top:7px;
+font-size:18px;
+color:#777;
+}
+
+select{
+padding:10px;
+border-radius:6px;
+border:none;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+background:rgba(255,255,255,0.95);
+color:black;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+th{
+background:#0072ff;
+color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+background:#f3f7ff;
+transition:.2s;
+}
+
+.hidden{
+display:none;
+}
+
+.totalBox{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Interactive Student & Market Dashboard</h1>
+
+<div class="switchBtns">
+<button onclick="showSection('students')">Students</button>
+<button onclick="showSection('products')">Market Products</button>
+</div>
+
+<div class="container">
+
+
+<div id="students">
+
+<div class="controls">
+
+<div class="searchBox">
+<span>🔍</span>
+<input id="studentSearch" placeholder="Search student name">
+</div>
+
+<select id="deptFilter">
+<option value="All">All Departments</option>
+<option value="CSE">CSE</option>
+<option value="ECE">ECE</option>
+<option value="ME">ME</option>
+<option value="EEE">EEE</option>
+<option value="IT">IT</option>
+</select>
+
+<button onclick="sortMarks()">Sort by Marks</button>
+<button onclick="showAllStudents()">Reset</button>
+
+</div>
+
+<table id="studentTable">
+<thead>
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Department</th>
+<th>Course</th>
+<th>Marks</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+
+<div id="products" class="hidden">
+
+<div class="controls">
+
+<div class="searchBox">
+<span>🔍</span>
+<input id="productSearch" placeholder="Search product">
+</div>
+
+<select id="typeFilter">
+<option value="All">All Types</option>
+<option value="Electronics">Electronics</option>
+<option value="Food">Food</option>
+</select>
+
+<button onclick="showCart()">Cart Items</button>
+<button onclick="totalCart()">Total Cart</button>
+<button onclick="showAllProducts()">Reset</button>
+
+</div>
+
+<table id="productTable">
+<thead>
+<tr>
+<th>Product</th>
+<th>Type</th>
+<th>Price</th>
+<th>In Cart</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<div id="cartTotal" class="totalBox"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let students=[
+{name:"Vipul",age:20,dept:"CSE",course:"AI",marks:85},
+{name:"Rahul",age:21,dept:"ECE",course:"Robotics",marks:78},
+{name:"Krishna",age:22,dept:"CSE",course:"Data Science",marks:92},
+{name:"Sonakshi",age:20,dept:"ME",course:"Thermodynamics",marks:66},
+{name:"Karan",age:23,dept:"CSE",course:"AI",marks:88},
+{name:"Geetha",age:21,dept:"EEE",course:"Power Systems",marks:72},
+{name:"Priyansh",age:20,dept:"CSE",course:"Cyber Security",marks:81},
+{name:"Vishnu",age:22,dept:"ECE",course:"VLSI",marks:76},
+{name:"Jennifer",age:23,dept:"CSE",course:"Data Science",marks:95},
+{name:"Parikshit",age:21,dept:"IT",course:"Cloud Computing",marks:84}
+];
+
+let products=[
+{name:"Laptop",type:"Electronics",price:70000,inCart:true},
+{name:"Mobile",type:"Electronics",price:30000,inCart:false},
+{name:"Headphones",type:"Electronics",price:2000,inCart:true},
+{name:"Apple",type:"Food",price:200,inCart:true},
+{name:"Milk",type:"Food",price:60,inCart:false},
+{name:"Bread",type:"Food",price:40,inCart:true},
+{name:"Keyboard",type:"Electronics",price:1500,inCart:false},
+{name:"Chocolate",type:"Food",price:120,inCart:true}
+];
+
+function showSection(section){
+
+document.getElementById("students").classList.add("hidden");
+document.getElementById("products").classList.add("hidden");
+
+document.getElementById(section).classList.remove("hidden");
+
+}
+
+function renderStudents(data){
+
+let tbody=document.querySelector("#studentTable tbody");
+tbody.innerHTML="";
+
+data.forEach(s=>{
+tbody.innerHTML+=`
+<tr>
+<td>${s.name}</td>
+<td>${s.age}</td>
+<td>${s.dept}</td>
+<td>${s.course}</td>
+<td>${s.marks}</td>
+</tr>`;
+});
+
+}
+
+function renderProducts(data){
+
+let tbody=document.querySelector("#productTable tbody");
+tbody.innerHTML="";
+
+data.forEach(p=>{
+tbody.innerHTML+=`
+<tr>
+<td>${p.name}</td>
+<td>${p.type}</td>
+<td>₹${p.price}</td>
+<td>${p.inCart}</td>
+</tr>`;
+});
+
+}
+
+function showAllStudents(){
+renderStudents(students);
+}
+
+function showAllProducts(){
+renderProducts(products);
+}
+
+document.getElementById("studentSearch").addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+let val=this.value.toLowerCase();
+let result=students.filter(s=>s.name.toLowerCase().includes(val));
+renderStudents(result);
+
+}
+
+});
+
+document.getElementById("productSearch").addEventListener("keypress",function(e){
+
+if(e.key==="Enter"){
+
+let val=this.value.toLowerCase();
+let result=products.filter(p=>p.name.toLowerCase().includes(val));
+renderProducts(result);
+
+}
+
+});
+
+document.getElementById("deptFilter").addEventListener("change",function(){
+
+let dept=this.value;
+
+if(dept==="All"){
+renderStudents(students);
+return;
+}
+
+let result=students.filter(s=>s.dept===dept);
+renderStudents(result);
+
+});
+
+document.getElementById("typeFilter").addEventListener("change",function(){
+
+let type=this.value;
+
+if(type==="All"){
+renderProducts(products);
+return;
+}
+
+let result=products.filter(p=>p.type===type);
+renderProducts(result);
+
+});
+
+function sortMarks(){
+
+let sorted=[...students].sort((a,b)=>b.marks-a.marks);
+renderStudents(sorted);
+
+}
+
+function showCart(){
+
+let cart=products.filter(p=>p.inCart);
+renderProducts(cart);
+
+}
+
+function totalCart(){
+
+let total=products
+.filter(p=>p.inCart)
+.reduce((sum,p)=>sum+p.price,0);
+
+document.getElementById("cartTotal").innerText="Total Cart Price : ₹"+total;
+
+}
+
+showAllStudents();
+
+</script>
+
+</body>
+</html>
