@@ -6,9 +6,6 @@
 <title>Uthara | Project Hub</title>
 
 <style>
-
-/* Modern Neon Glass Theme */
-
 :root{
     --bg:#0f172a;
     --primary:#00f5ff;
@@ -21,39 +18,24 @@ body{
     font-family:'Poppins',sans-serif;
     background:var(--bg);
     color:white;
-    overflow-x:hidden;
 }
 
-/* Animated Background Glow */
+/* Background Glow */
+body::before, body::after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    filter:blur(150px);
+    z-index:-1;
+}
 body::before{
-    content:"";
-    position:fixed;
-    width:600px;
-    height:600px;
     background:radial-gradient(circle,var(--primary),transparent 70%);
-    top:-200px;
-    left:-200px;
-    filter:blur(150px);
-    animation:moveGlow 8s infinite alternate;
-    z-index:-1;
+    top:-200px; left:-200px;
 }
-
 body::after{
-    content:"";
-    position:fixed;
-    width:600px;
-    height:600px;
     background:radial-gradient(circle,var(--secondary),transparent 70%);
-    bottom:-200px;
-    right:-200px;
-    filter:blur(150px);
-    animation:moveGlow 10s infinite alternate;
-    z-index:-1;
-}
-
-@keyframes moveGlow{
-    from{transform:translate(0,0);}
-    to{transform:translate(100px,100px);}
+    bottom:-200px; right:-200px;
 }
 
 /* Navbar */
@@ -61,14 +43,10 @@ nav{
     padding:20px 40px;
     display:flex;
     justify-content:space-between;
-    align-items:center;
 }
-
 nav h2{
     color:var(--primary);
-    letter-spacing:2px;
 }
-
 nav span{
     color:var(--secondary);
 }
@@ -78,7 +56,6 @@ header{
     text-align:center;
     margin-top:60px;
 }
-
 header h1{
     font-size:48px;
     background:linear-gradient(90deg,var(--primary),var(--secondary));
@@ -86,12 +63,7 @@ header h1{
     color:transparent;
 }
 
-header p{
-    opacity:0.7;
-    margin-top:10px;
-}
-
-/* Grid Projects */
+/* Grid */
 .projects{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -99,7 +71,7 @@ header p{
     padding:60px;
 }
 
-/* Project Card */
+/* Cards */
 .project-card{
     background:var(--card);
     backdrop-filter:blur(20px);
@@ -107,80 +79,32 @@ header p{
     padding:30px;
     text-decoration:none;
     color:white;
-    position:relative;
-    overflow:hidden;
-    transition:0.4s;
+    transition:0.3s;
     border:1px solid rgba(255,255,255,0.1);
 }
 
-/* Animated Border Glow */
-.project-card::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:20px;
-    padding:2px;
-    background:linear-gradient(45deg,var(--primary),var(--secondary));
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite:destination-out;
-    mask-composite:exclude;
-}
-
 .project-card:hover{
-    transform:translateY(-10px) scale(1.05);
-    box-shadow:0 0 25px var(--primary);
-}
-
-/* Shine Effect */
-.project-card::after{
-    content:"";
-    position:absolute;
-    top:-100%;
-    left:-100%;
-    width:200%;
-    height:200%;
-    background:linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.2),
-        transparent
-    );
-    transform:rotate(25deg);
-    transition:0.6s;
-}
-
-.project-card:hover::after{
-    top:100%;
-    left:100%;
+    transform:translateY(-10px);
+    box-shadow:0 0 20px var(--primary);
 }
 
 .icon{
-    font-size:38px;
-    margin-bottom:15px;
-}
-
-.project-card h3{
-    margin:10px 0;
+    font-size:35px;
 }
 
 .btn{
     display:inline-block;
     margin-top:10px;
-    padding:8px 16px;
-    border-radius:30px;
+    padding:8px 15px;
+    border-radius:20px;
     background:linear-gradient(90deg,var(--primary),var(--secondary));
-    font-size:13px;
 }
 
 /* Footer */
 footer{
     text-align:center;
     padding:20px;
-    opacity:0.6;
 }
-
 </style>
 </head>
 
@@ -198,65 +122,89 @@ footer{
 
 <section class="projects">
 
+<!-- OLD PROJECTS -->
 <a href="Personal website.html" class="project-card">
     <div class="icon">💻</div>
-    <h3>Personal Website (No CSS)</h3>
-    <p>Basic HTML profile.</p>
+    <h3>Personal Website</h3>
     <div class="btn">View</div>
 </a>
 
 <a href="E-Commerce.html" class="project-card">
     <div class="icon">🛒</div>
-    <h3>E-Commerce (No CSS)</h3>
-    <p>Simple shopping page.</p>
+    <h3>E-Commerce</h3>
     <div class="btn">View</div>
 </a>
 
-<a href="Personal website css.html" class="project-card">
-    <div class="icon">🌐</div>
-    <h3>Styled Portfolio</h3>
-    <p>Modern portfolio layout.</p>
+<a href="calculatorcss.html" class="project-card">
+    <div class="icon">🧮</div>
+    <h3>Calculator</h3>
     <div class="btn">View</div>
 </a>
 
 <a href="E-com css.html" class="project-card">
-    <div class="icon">🛍️</div>
-    <h3>E-Commerce Styled</h3>
-    <p>Products & cart.</p>
+    <div class="icon">🛒</div>
+    <h3>E-Commerce CSS</h3>
+    <div class="btn">View</div>
+</a>
+
+<a href="formcss.html" class="project-card">
+    <div class="icon">📝</div>
+    <h3>Form CSS</h3>
     <div class="btn">View</div>
 </a>
 
 <a href="javascriptcalculator.html" class="project-card">
     <div class="icon">🧮</div>
-    <h3>Simple Calculator</h3>
-    <p>Basic math operations.</p>
-    <div class="btn">View</div>
-</a>
-
-<a href="calculatorcss.html" class="project-card">
-    <div class="icon">⚡</div>
-    <h3>Advanced Calculator</h3>
-    <p>Enhanced UI version.</p>
-    <div class="btn">View</div>
-</a>
-
-<a href="formcss.html" class="project-card">
-    <div class="icon">✒️</div>
-    <h3>Registration form</h3>
-    <p>Forms with tabular data.</p>
+    <h3>JavaScript Calculator</h3>
     <div class="btn">View</div>
 </a>
 
 <a href="operationonarray.html" class="project-card">
-    <div class="icon">📋</div>
-    <h3>Table</h3>
-    <p> tabular data.</p>
+    <div class="icon">📊</div>
+    <h3>Array Operations</h3>
     <div class="btn">View</div>
 </a>
+
+<a href="Personal website css.html" class="project-card">
+    <div class="icon">💻</div>
+    <h3>Personal Website CSS</h3>
+    <div class="btn">View</div>
+</a>
+
+<a href="student_hub/index.html" class="project-card">
+    <div class="icon">🎓</div>
+    <h3>Student Hub</h3>
+    <div class="btn">View</div>
+</a>
+
+<!-- EXP 8 -->
+<a href="exp8/index.php" class="project-card">
+    <div class="icon">🧾</div>
+    <h3>Experiment 8</h3>
+    <p>Form Handling</p>
+    <div class="btn">Open</div>
+</a>
+
+<!-- EXP 9 -->
+<a href="exp9/index.php" class="project-card">
+    <div class="icon">🗄️</div>
+    <h3>Experiment 9</h3>
+    <p>PHP + MySQL</p>
+    <div class="btn">Open</div>
+</a>
+
+<!-- EXP 10 -->
+<a href="exp10/index.php" class="project-card">
+    <div class="icon">🔐</div>
+    <h3>Experiment 10</h3>
+    <p>Sessions & Cookies</p>
+    <div class="btn">Open</div>
+</a>
+
 </section>
 
 <footer>
-© 2026 K Uthara | Designed with 💙
+© 2026 Uthara | All Experiments Included 💯
 </footer>
 
 </body>
